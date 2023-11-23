@@ -46,16 +46,17 @@ While implementing your solution **please take care of the following requirement
 
 #### Functional requirements
 
-- There is no need for UI;
 - The REST API methods should be implemented based on the specification provided in the linked swagger file;
-- Add 2 new API methods (they're not defined in the swagger file) that enable a user to like a post, and unlike a post they've already liked. When returning the list of posts in the `/walls` method, add a new attribute to each post returned, containing the number of likes it has.
+- Add 2 new API methods (they're not defined in the swagger file) that enable a user to like a post, and unlike a post they've already liked. When returning the list of posts in the `/walls` method, add a new attribute to each post returned, containing the number of likes it has;
+- There is no need for UI.
 
 #### Non-functional requirements
 
+- The project must be buildable and runnable;
+- The project must have Unit tests;
+- The project must have a README file with build/run/test instructions (use a DB that can be run locally, e.g. in-memory, via container);
+- Any data required by the application to run (e.g. reference tables, dummy data) must be preloaded in the database;
 - Input/output data must be in JSON format;
-- Your project must be buildable and runnable;
-- Your project must have a README file with build/run/test instructions (use DB that can be run locally, e.g. in-memory, via container);
-- Unit tests;
 - Use a framework of your choice, but popular, up-to-date, and long-term support versions are recommended.
 
 ---
