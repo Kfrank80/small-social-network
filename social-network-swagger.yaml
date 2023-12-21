@@ -10,6 +10,7 @@ schemes:
 paths:
   /users:
     post:
+      operationId: users.create
       parameters:
         - name: userRequest
           required: true
@@ -31,8 +32,10 @@ paths:
             $ref: '#/definitions/500'
       tags:
         - users
+      x-swagger-router-controller: controllers
   /users/{userId}/friends/{friendId}:
     post:
+      operationId: network.add_friendship
       parameters:
         - $ref: '#/parameters/userId'
         - $ref: '#/parameters/friendId'
@@ -51,8 +54,10 @@ paths:
             $ref: '#/definitions/500'
       tags:
         - network
+      x-swagger-router-controller: controllers
   /users/{userId}/followers/{followerId}:
     post:
+      operationId: network.add_follower
       parameters:
         - $ref: '#/parameters/userId'
         - $ref: '#/parameters/followerId'
@@ -72,8 +77,56 @@ paths:
       tags:
         - network
       description: Adds the user with id - followerId as a follower to the user with the userId passed
+      x-swagger-router-controller: controllers
+  /users/{userId}/liked/{postId}:
+    post:
+      operationId: social.add_like
+      parameters:
+        - $ref: '#/parameters/userId'
+        - $ref: '#/parameters/postId'
+      responses:
+        200:
+          description: User successfully liked this post
+          schema:
+            $ref: '#/definitions/200'
+        400:
+          description: The request was invalid
+          schema:
+            $ref: '#/definitions/400'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/500'
+      tags:
+        - social
+      description: A user liked a post
+      x-swagger-router-controller: controllers
+  /users/{userId}/disliked/{postId}:
+    post:
+      operationId: social.dislike
+      parameters:
+        - $ref: '#/parameters/userId'
+        - $ref: '#/parameters/postId'
+      responses:
+        200:
+          description: User successfully disliked this post
+          schema:
+            $ref: '#/definitions/200'
+        400:
+          description: The request was invalid
+          schema:
+            $ref: '#/definitions/400'
+        500:
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/500'
+      tags:
+        - social
+      description: A user disliked a post
+      x-swagger-router-controller: controllers
   /posts:
     post:
+      operationId: posts.add_post
       description: create a new post
       parameters:
         - name: postRequest
@@ -96,8 +149,10 @@ paths:
             $ref: '#/definitions/500'
       tags:
         - posts
+      x-swagger-router-controller: controllers
   /walls/{userId}:
     get:
+      operationId: social.user_wall
       parameters:
         - $ref: '#/parameters/userId'
       responses:
@@ -116,6 +171,7 @@ paths:
             $ref: '#/definitions/500'
       tags:
         - social
+      x-swagger-router-controller: controllers
 definitions:
   userItem:
     properties:
@@ -147,6 +203,10 @@ definitions:
         format: string
         example: "John Doe"
         description: the id of the user that created the post
+      likesNumber:
+        format: number
+        example: 2
+        description: likes numbers of this post
   postRequest:
     properties:
       userId:
