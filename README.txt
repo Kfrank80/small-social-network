@@ -1,4 +1,4 @@
-# Swagger generated server
+# Python Flask Server
 
 ## Overview
 This server was developed using python-flask. Python-flask is a web application framework written in Python.
